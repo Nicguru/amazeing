@@ -1,22 +1,23 @@
 
 import java.awt.Point;
 import java.util.Random;
-import java.util.Stack;
 import java.util.ArrayList;
 
 public class MazeGen {
 	public static void main(String[] args) {
-		final int width = 10;
+		final int width = 30;
 		final int height = 10;
 		Random r = new Random();
 		boolean visited[][] = new boolean[width][height];
 		boolean open[][] = new boolean[2*width+1][2*height+1];
-		Stack<Point> stack = new Stack<Point>();
-		stack.push(new Point(0, 0));
+		ArrayList<Point> points = new ArrayList<Point>();
+		points.add(new Point(0, 0));
 		visited[0][0] = true;
 		open[1][1] = true;
-		while(!stack.isEmpty()) {
-			Point p = stack.pop();
+		while(!points.isEmpty()) {
+			//int x = r.nextInt(points.size());
+			int x = points.size()-1;
+			Point p = points.remove(x);
 			boolean deadEnd = false;
 			while(!deadEnd) {
 				ArrayList<Point> candidates = new ArrayList<Point>();
@@ -42,9 +43,9 @@ public class MazeGen {
 					visited[q.x][q.y] = true;
 					open[2*q.x+1][2*q.y+1] = true;
 					open[p.x+q.x+1][p.y+q.y+1] = true;
-					stack.push(q);
-					//stack.push(q);
-					//stack.push(q);
+					points.add(q);
+					//points.push(q);
+					//points.push(q);
 					p = q;
 				}
 			}

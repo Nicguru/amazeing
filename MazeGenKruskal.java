@@ -2,27 +2,23 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MazeGenKruskal {
+public class MazeGenKruskal implements MazeGen {
 	private int[][] cellSet;
 	private boolean[][] open;
 	private ArrayList<Point> walls;
-	private final int WIDTH;
-	private final int HEIGHT;
 	private static int setGroup = 1;
 
-	public MazeGenKruskal(int width, int height) {
-		WIDTH = width;
-		HEIGHT = height;
+	private void init(int width, int height) {
 		walls = new ArrayList<Point>();
-		cellSet = new int[WIDTH][HEIGHT];
-		open = new boolean[2 * WIDTH + 1][2 * HEIGHT + 1];
-		for (int x = 0; x < WIDTH; x++) {
-			for (int y = 0; y < HEIGHT; y++) {
-				if (x < WIDTH - 1) {
+		cellSet = new int[width][height];
+		open = new boolean[2 * width + 1][2 * height + 1];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				if (x < width - 1) {
 					// Add East Wall
 					walls.add(new Point(2 * x + 2, 2 * y + 1));
 				}
-				if (y < HEIGHT - 1) {
+				if (y < height - 1) {
 					// Add South Wall
 					walls.add(new Point(2 * x + 1, 2 * y + 2));
 				}
@@ -34,7 +30,8 @@ public class MazeGenKruskal {
 		open[2 * width - 1][2 * height] = true;
 	}
 
-	public void generateMaze() {
+	public boolean[][] generateMaze(int width, int height) {
+		init(width,height);
 		Random r = new Random();
 		while (!walls.isEmpty()) {
 			int w = r.nextInt(walls.size());
@@ -58,8 +55,8 @@ public class MazeGenKruskal {
 			}
 			if (set1 != set2) {
 				open[wall.x][wall.y] = true;
-				for (int x = 0; x < WIDTH; x++) {
-					for (int y = 0; y < HEIGHT; y++) {
+				for (int x = 0; x < cellSet.length; x++) {
+					for (int y = 0; y < cellSet[x].length; y++) {
 						if (cellSet[x][y] == set2) {
 							cellSet[x][y] = set1;
 						}
@@ -67,11 +64,9 @@ public class MazeGenKruskal {
 				}
 			}
 		}
-
-	}
-
-	public boolean[][] getMaze() {
 		return open;
+
 	}
+
 
 }

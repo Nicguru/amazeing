@@ -1,3 +1,4 @@
+package amazeing;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;

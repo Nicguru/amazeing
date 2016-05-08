@@ -1,3 +1,4 @@
+package amazeing;
 
 public class Main {
 

@@ -1,3 +1,4 @@
+package amazeing;
 
 import java.awt.Point;
 import java.util.Random;
@@ -55,6 +56,10 @@ public class MazeGenDF {
 		visited[0][0] = true;
 		open[1][1] = true;
 		generateMaze(new Point(0,0));
+	}
+	
+	public boolean[][] getMaze() {
+		return open;
 	}
 	
 	public String toString() {

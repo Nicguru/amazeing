@@ -3,7 +3,7 @@ import java.awt.Point;
 import java.util.Random;
 import java.util.ArrayList;
 
-public class MazeGenRecursive {
+public class MazeGenDF {
 	private final int WIDTH;
 	private final int HEIGHT;
 	private boolean[][] visited;
@@ -11,7 +11,7 @@ public class MazeGenRecursive {
 	private Random r = new Random();
 	
 	
-	public MazeGenRecursive(int width, int height) {
+	public MazeGenDF(int width, int height) {
 		WIDTH = width;
 		HEIGHT = height;
 		visited = new boolean[WIDTH][HEIGHT];
@@ -75,7 +75,7 @@ public class MazeGenRecursive {
 	
 	
 	public static void main(String[] args) {
-		MazeGenRecursive maze = new MazeGenRecursive(21,34);
+		MazeGenDF maze = new MazeGenDF(21,34);
 		maze.generateMaze();
 		System.out.println(maze);
 	}

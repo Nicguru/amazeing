@@ -3,7 +3,11 @@ package amazeing;
 import java.awt.Point;
 import java.util.Random;
 import java.util.ArrayList;
-
+/**
+ * Class representing a maze generator using the recursive "depth first" algorithm
+ * @author Nicholas
+ *
+ */
 public class MazeGenDF implements MazeGen {
 	private int width;
 	private int height;
@@ -11,7 +15,10 @@ public class MazeGenDF implements MazeGen {
 	private boolean[][]open;
 	private Random r = new Random();
 	
-		
+	/**
+	 * Generates maze based on a given Point
+	 * @param p - point
+	 */
 	private void generateMaze(Point p) {
 		boolean deadEnd = false;
 		while(!deadEnd) {
@@ -46,6 +53,9 @@ public class MazeGenDF implements MazeGen {
 	}
 		
 	@Override
+	/**
+	 * Generates a maze based on a given width and height
+	 */
 	public boolean[][] generateMaze(int width, int height) {
 		this.width = width;
 		this.height = height;

@@ -3,12 +3,21 @@ package amazeing;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
-
+/**
+ * Class representing a maze generator using the "kruskal" algorithm
+ * @author Nicholas
+ *
+ */
 public class MazeGenKruskal implements MazeGen {
 	private ArrayList<Point>[][] cellSet;
 	private boolean[][] open;
 	private ArrayList<Point> walls;
 
+	/**
+	 * Initializes the maze given a width and height
+	 * @param width
+	 * @param height
+	 */
 	private void init(int width, int height) {
 		walls = new ArrayList<Point>();
 		cellSet = new ArrayList[width][height];
@@ -33,6 +42,9 @@ public class MazeGenKruskal implements MazeGen {
 		open[2 * width - 1][2 * height] = true;
 	}
 
+	/**
+	 * Generates the maze given a width and height
+	 */
 	public boolean[][] generateMaze(int width, int height) {
 		init(width, height);
 		Random r = new Random();
